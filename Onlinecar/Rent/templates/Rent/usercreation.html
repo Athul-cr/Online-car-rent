@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+{% extends "Clientapp/userindex.html" %}
+
+
+{% block body_block %}
+<p align="center">Please Enter the Details</p>
+<div class="container">
+    <div class="jumbotron">
+<form method="post">
+    {% csrf_token %}
+    {{orderr.as_p}}
+    <input type="submit" value="Proceed">
+</form>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends "Rent/base.html" %}
+
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form method="post">
+                {%csrf_token%}
+                {{search.as_p}}
+                <input type="submit" value="SEARCH">
+            </form>
+
+        </div>
+    </div>
+<br>
+    <div class="jumbotron">
+
+
+
+        <div class="row">
+            {% for car in view %}
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img height="200px" class="card-img-top" src="{{car.image.url}}" alt="Card image cap">
+                        <table>
+                             <tr>
+                                <td><h5 class="card-title">{{car.brand_nme}}</h5></td>
+                                <td><h5 class="card-title">Seat </h5></td>
+                                <td><h5 class="card-title">{{car.seat_Select}}</h5></td>
+                            </tr>
+                            <tr>
+                                 <td><p class="card-text" >Location</p></td>
+                                <td><p class="card-text">{{car.location}}</p></td>
+                            </tr>
+                            <tr>
+
+                                <td><p class="card-text">{{car.lw_km}}KM</p></td>
+                                <td><p class="card-text">{{car.price}}RS</p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="card-text">{{car.Hi_km}}KM</p></td>
+                                <td><p class="card-text">{{car.price_high}}RS</p></td>
+                            </tr>
+                            <tr>
+                                <td><a href="{%url 'DeleteCar' car.id%}" class="btn btn-primary">Delete</a></td>
+                                &nbsp;<td><a href="{%url 'caredit' car.id%}" class="btn btn-primary">Edit</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+    {% endblock %}

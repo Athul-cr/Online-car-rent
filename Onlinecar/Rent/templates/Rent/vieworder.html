@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends "Rent/base.html" %}
+
+
+{% block body_block %}
+<h1>Orders</h1>
+<!--<form method="post">-->
+<!--    {{form.as_p}}-->
+<!--    {% csrf_token %}-->
+<!--    <input type="submit" value="update">-->
+<!--</form>-->
+<div class="container">
+    <table class="table">
+        <tr>
+            <td>PERSON NAME</td>
+            <td>Age</td>
+            <td>phone number</td>
+            <td>status</td>
+        </tr>
+        {% for orders in order %}
+        <tr>
+            <td>{{orders.Person_name}}</td>
+            <td>{{orders.Age}}</td>
+            <td>{{orders.phone_number}}</td>
+            <td>{{orders.status}}</td>
+             <td><a href="{% url 'orderDetails' orders.id %}">VIEW THIS ORDER</a></td>
+        </tr>
+{% endfor %}
+    </table>
+
+</div>
+{% endblock %}

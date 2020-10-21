@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "Rent/base.html" %}
+
+
+{% block body_block %}
+<h2 align="center">Create Brand</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form method="post">
+                {%csrf_token%}
+                {{form.as_p}}
+                <input type="submit" class="btn btn-primary"  value="Submit">
+            </form>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <p></p>
+</div>
+<div class="container">
+    <table class="table">
+        <tr>
+            <td>Brands</td>
+            <td>OPTIONS</td>
+
+        </tr>
+        {% for brands in qs %}
+        <tr>
+            <td>{{brands.brand_name}}</td>
+            <td><a class="btn btn-info"  href="{% url 'BrandEdit' brands.id%}">EDIT</a></td>
+            <td><a class="btn btn-danger" href="{% url 'BrandDel' brands.id%}">DELETE</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends "Rent/base.html" %}
+
+
+{% block body_block %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type="submit" value="Create">
+    </form>
+<br>
+    <div class="jumbotron">
+
+
+        <div class="row">
+            {% for car in cars %}
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img height="200px" class="card-img-top" src="{{car.image.url}}" alt="Card image cap">
+                        <table>
+                            <tr>
+                                <td><h5 class="card-title">Car</h5></td>
+                                <td><h5 class="card-title">{{car.brand_nme}}</h5></td>
+                                <td><h5 class="card-title">Seat </h5></td>
+                                <td><h5 class="card-title">{{car.seat_Select}}</h5></td>
+                            </tr>
+                            <tr>
+                                <td><p class="card-text" >Location</p></td>
+                                <td><p class="card-text">{{car.location}}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="card-text">{{car.lw_km}}</p></td>
+                                <td><p class="card-text">{{car.price}}</p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="card-text">{{car.Hi_km}}</p></td>
+                                <td><p class="card-text">{{car.price_high}}</p></td>
+                            </tr>
+                            <tr>
+                                <td><a href="{%url 'DeleteCar' car.id%}" class="btn btn-primary">DELETE</a></td>
+                                &nbsp;<td><a href="{%url 'caredit' car.id%}" class="btn btn-primary">Edit</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+</div>
+{% endblock %}
