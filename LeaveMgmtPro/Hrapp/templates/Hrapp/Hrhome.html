@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends "Hrapp/base.html" %}
+
+
+{% block body_block %}
+<div class="container">
+    <div class="jumbotron">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" name="Create">
+</form>
+</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+
+            {% for user in create %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{user.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Name:{{user.Name}}</h5>
+                    <p class="card-text">Position:{{user.Position}}</p>
+                    <p class="card-text">WorkLocation:{{user.Worklocation}}</p>
+                    <p class="card-text">Age:{{user.Age}}</p>
+                    <p class="card-text">startDate:{{user.Startdate}}</p>
+                    <p class="card-text">Salary:{{user.salary}}</p>
+                    <p class="card-text">Education qualification:{{user.Edu_qual}}</p>
+                    <p class="card-text">Exp:{{user.Experience}}</p>
+                    <p class="card-text">Address:{{user.address}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Workmail:{{user.wrkmail}}</li>
+                    <li class="list-group-item">Phone:{{user.phone}}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{%url 'Hrhome' user.id%}" class="card-link">view status</a>
+                    <a href="{%url 'EditUser' user.id%}" class="card-link">Edit</a>
+                    <a href="{%url 'DeletePro' user.id%}" class="card-link">Delete</a>
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
